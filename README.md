@@ -25,4 +25,4 @@ This Web App consumes the [Poke API](https://pokeapi.co/) for displaying informa
 
 ## Live APP:
 
-- react-tailwind-pokemon-app.vercel.app
+- [react-tailwind-pokemon-app.vercel.app](https://react-tailwind-pokemon-app.vercel.app/)
