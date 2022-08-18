@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useFetch from "../../custom-hooks/fetch";
 
-export function DisplayPokemonMin(props: { pokemonURL: any }) {
+export function DisplayPokemonMin(props: {
+  pokemonURL: any;
+  filter?: any;
+  filters?: any;
+}) {
   const { data: pokemon, loading, error } = useFetch(props.pokemonURL);
+
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    if (
+      props.filter !== undefined &&
+      props.filter !== null &&
+      props.filters !== undefined &&
+      props.filters !== null
+    ) {
+      let showTimes = 0;
+      setShow(false);
+
+      props.filters.forEach((fil: any) => {
+        if (props.filter[fil.name]) {
+          showTimes += 1;
+          return pokemon.types.forEach((types: any) => {
+            if (fil.name === types.type.name) {
+              return setShow(true);
+            }
+          });
+        }
+      });
+
+      if (showTimes === 0) {
+        setShow(true);
+      }
+    }
+  }, [props.filter]);
 
   if (loading) return <h1>Loading...</h1>;
   if (error) {
@@ -21,9 +54,9 @@ export function DisplayPokemonMin(props: { pokemonURL: any }) {
   return (
     <div
       key={pokemon.id}
-      className={
-        "sm:flex-[40%] sm:w-[45%] md:flex-[30%] md:w[35%] lg:flex-[20%] lg:w[25%] w-full p-3 min-h-[15vh] bg-gray-200 m-4 mt-4 md:m-0 rounded-lg relative"
-      }
+      className={`sm:flex-[40%] sm:w-[45%] md:flex-[30%] md:w[35%] lg:flex-[20%] lg:w[25%] w-full p-3 min-h-[15vh] bg-gray-200 m-4 mt-4 md:m-0 rounded-lg relative ${
+        !show ? "hidden" : ""
+      }`}
     >
       <img
         src={pokemon.sprites.other["official-artwork"]["front_default"]}

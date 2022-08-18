@@ -1,6 +1,5 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import React, { SyntheticEvent, useState } from "react";
-import { MdAddCircleOutline } from "react-icons/md";
 import useFetch from "../../custom-hooks/fetch";
 
 export function DisplayComparation(props: { pokemonData: any }) {
@@ -17,17 +16,9 @@ export function DisplayComparation(props: { pokemonData: any }) {
     error,
   } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
 
-  const {
-    data: pokemon2,
-    loading: loading2,
-    error: error2,
-  } = useFetch(secondPokemonValue);
+  const { data: pokemon2, loading: loading2 } = useFetch(secondPokemonValue);
 
-  const {
-    data: pokemon3,
-    loading: loading3,
-    error: error3,
-  } = useFetch(thirdPokemonValue);
+  const { data: pokemon3, loading: loading3 } = useFetch(thirdPokemonValue);
 
   function addPokemonsNames() {
     if (loading) return <option value="loading">Loading...</option>;
@@ -51,11 +42,11 @@ export function DisplayComparation(props: { pokemonData: any }) {
 
   function addPokemon() {
     if (!secondPokemon) {
-      setSecondPokemon((prevValue) => !prevValue);
       setSecondPokemonValue("");
+      setSecondPokemon((prevValue) => !prevValue);
     } else if (!thirdPokemon) {
-      setThirdPokemon((prevValue) => !prevValue);
       setThirdPokemonValue("");
+      setThirdPokemon((prevValue) => !prevValue);
     }
   }
 
@@ -183,28 +174,34 @@ export function DisplayComparation(props: { pokemonData: any }) {
               />
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  <img
-                    src={pokemon2.sprites["front_default"]}
-                    alt={`Pokemon: ${pokemon2.name}`}
-                  />
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    <img
+                      src={pokemon2.sprites["front_default"]}
+                      alt={`Pokemon: ${pokemon2.name}`}
+                    />
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  <img
-                    src={pokemon3.sprites["front_default"]}
-                    alt={`Pokemon: ${pokemon3.name}`}
-                  />
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    <img
+                      src={pokemon3.sprites["front_default"]}
+                      alt={`Pokemon: ${pokemon3.name}`}
+                    />
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -255,18 +252,24 @@ export function DisplayComparation(props: { pokemonData: any }) {
             <td>Base XP:</td>
             <td>{props.pokemonData["base_experience"]}</td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>{pokemon2["base_experience"]}</td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>{pokemon2["base_experience"]}</td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>{pokemon3["base_experience"]}</td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>{pokemon3["base_experience"]}</td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -276,22 +279,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[0].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[0]["base_stat"]} / {pokemon2.stats[0].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[0]["base_stat"]} /{" "}
+                    {pokemon2.stats[0].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[0]["base_stat"]} / {pokemon3.stats[0].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[0]["base_stat"]} /{" "}
+                    {pokemon3.stats[0].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -301,22 +312,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[1].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[1]["base_stat"]} / {pokemon2.stats[1].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[1]["base_stat"]} /{" "}
+                    {pokemon2.stats[1].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[1]["base_stat"]} / {pokemon3.stats[1].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[1]["base_stat"]} /{" "}
+                    {pokemon3.stats[1].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -326,22 +345,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[2].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[2]["base_stat"]} / {pokemon2.stats[2].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[2]["base_stat"]} /{" "}
+                    {pokemon2.stats[2].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[2]["base_stat"]} / {pokemon3.stats[2].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[2]["base_stat"]} /{" "}
+                    {pokemon3.stats[2].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -351,22 +378,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[3].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[3]["base_stat"]} / {pokemon2.stats[3].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[3]["base_stat"]} /{" "}
+                    {pokemon2.stats[3].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[3]["base_stat"]} / {pokemon3.stats[3].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[3]["base_stat"]} /{" "}
+                    {pokemon3.stats[3].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -376,22 +411,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[4].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[4]["base_stat"]} / {pokemon2.stats[4].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[4]["base_stat"]} /{" "}
+                    {pokemon2.stats[4].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[4]["base_stat"]} / {pokemon3.stats[4].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[4]["base_stat"]} /{" "}
+                    {pokemon3.stats[4].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
           <tr>
@@ -401,22 +444,30 @@ export function DisplayComparation(props: { pokemonData: any }) {
               {props.pokemonData.stats[5].effort}
             </td>
             {secondPokemon &&
-              secondPokemonValue !== "" &&
-              (!loading2 ? (
-                <td>
-                  {pokemon2.stats[5]["base_stat"]} / {pokemon2.stats[5].effort}
-                </td>
+              (secondPokemonValue !== "" ? (
+                !loading2 ? (
+                  <td>
+                    {pokemon2.stats[5]["base_stat"]} /{" "}
+                    {pokemon2.stats[5].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
             {thirdPokemon &&
-              thirdPokemonValue !== "" &&
-              (!loading3 ? (
-                <td>
-                  {pokemon3.stats[5]["base_stat"]} / {pokemon3.stats[5].effort}
-                </td>
+              (thirdPokemonValue !== "" ? (
+                !loading3 ? (
+                  <td>
+                    {pokemon3.stats[5]["base_stat"]} /{" "}
+                    {pokemon3.stats[5].effort}
+                  </td>
+                ) : (
+                  <td>Loading...</td>
+                )
               ) : (
-                <td>Loading...</td>
+                <td>...</td>
               ))}
           </tr>
         </tbody>
