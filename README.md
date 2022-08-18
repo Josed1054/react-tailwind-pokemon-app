@@ -22,3 +22,7 @@ This Web App consumes the [Poke API](https://pokeapi.co/) for displaying informa
 - React Router: Make the routes for the app and navigation.
 - Auto-Animate: Easily animate the app.
 - React-Icons: Add and use Icons in the app.
+
+## Live APP:
+
+- react-tailwind-pokemon-app.vercel.app
