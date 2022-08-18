@@ -4,15 +4,12 @@ import useFetch from "../../custom-hooks/fetch";
 import { DisplayPokemonMin } from "../../components/display-pokemons";
 
 export function Pokemons() {
-  // handle animation
   const [animation] = useAutoAnimate();
 
-  // handle states
   const [page, setPage] = useState(1);
   const [offset, setOffset] = useState(0);
   const [records, setRecords] = useState(20);
 
-  // fetch by page, and update record count
   const {
     data: pokemons,
     loading,
@@ -31,7 +28,6 @@ export function Pokemons() {
     return <h2>Error</h2>;
   }
 
-  // handle pagination
   function changePage(event: SyntheticEvent) {
     const { name } = event.target as HTMLButtonElement;
 
