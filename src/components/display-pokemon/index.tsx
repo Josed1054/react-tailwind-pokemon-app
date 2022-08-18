@@ -2,6 +2,7 @@ import React from "react";
 import useFetch from "../../custom-hooks/fetch";
 import { DisplayAbilities } from "../display-abilities";
 import { DisplayCarousel } from "../display-carousel-locations";
+import { DisplayComparation } from "../display-comparation";
 
 export function DisplayPokemon(props: { pokemonID: any }) {
   const {
@@ -67,6 +68,8 @@ export function DisplayPokemon(props: { pokemonID: any }) {
         </div>
       </div>
       <DisplayCarousel />
+      <p className="text-center">Comparator:</p>
+      <DisplayComparation pokemonData={pokemon} />
     </>
   );
 }
