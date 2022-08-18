@@ -1,6 +1,7 @@
 import React from "react";
 import useFetch from "../../custom-hooks/fetch";
 import { DisplayAbilities } from "../display-abilities";
+import { DisplayCarousel } from "../display-carousel-locations";
 
 export function DisplayPokemon(props: { pokemonID: any }) {
   const {
@@ -65,6 +66,7 @@ export function DisplayPokemon(props: { pokemonID: any }) {
           {displayStats()}
         </div>
       </div>
+      <DisplayCarousel />
     </>
   );
 }
