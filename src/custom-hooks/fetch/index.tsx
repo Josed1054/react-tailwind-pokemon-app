@@ -5,11 +5,21 @@ function useFetch(url: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [urls, setUrls] = useState<any>([]);
+  const [urlsData, setDataUrls] = useState<any>([]);
+
   useEffect(() => {
-    if (url !== "") {
+    if (urls.indexOf(url) !== -1) {
+      setData(urlsData[urls.indexOf(url)]);
+      setLoading(false);
+    } else if (url !== "" && urls.indexOf(url) === -1) {
       fetch(url)
         .then((Response) => Response.json())
-        .then((data) => setData(data))
+        .then((data) => {
+          setUrls((prevUrls: any) => [...prevUrls, url]);
+          setDataUrls((prevDataUrls: any) => [...prevDataUrls, data]);
+          setData(data);
+        })
         .catch((error) => {
           setError(error);
           setLoading(true);
